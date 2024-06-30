@@ -87,14 +87,14 @@
             transition: background-color 0.3s;
             font-size: 24px;
         }
-        .nav-item:hover {
+        .nav-item.active {
             background-color: rgba(255, 255, 255, 0.2);
         }
         .switch {
-        position: relative;
-        display: inline-block;
-        width: 60px;
-        height: 34px;
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
         }
 
         /* 滑块 */
@@ -160,13 +160,25 @@
     </div>
 
     <div class="navbar">
-        <div class="nav-item"><i class="fas fa-search"></i></div>
-        <div class="nav-item"><i class="fas fa-calendar-alt"></i></div>
-        <div class="nav-item"><i class="fas fa-store"></i></div>
-        <div class="nav-item"><i class="fas fa-user"></i></div>
+        <div class="nav-item" id="search"><i class="fas fa-search"></i></div>
+        <div class="nav-item" id="calendar"><i class="fas fa-calendar-alt"></i></div>
+        <div class="nav-item" id="store"><i class="fas fa-store"></i></div>
+        <div class="nav-item" id="user"><i class="fas fa-user"></i></div>
     </div>
 
     <script>
+        const navItems = document.querySelectorAll('.nav-item');
+
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // Remove active class from all items
+                navItems.forEach(navItem => navItem.classList.remove('active'));
+                
+                // Add active class to the clicked item
+                item.classList.add('active');
+            });
+        });
+
         function toggleVR() {
             // Example VR mode toggle logic
             alert('VR Mode toggled!');
